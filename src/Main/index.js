@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
-
 import CreateTodoItem from '../CreateTodoItem';
-
 import TodoList from '../TodosList';
+import {withStyles} from '@material-ui/core/styles';
+import style from "./style";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+
 
 class Main extends Component {
     static id=0;
@@ -81,18 +84,22 @@ class Main extends Component {
 
     render() {
         const {todos, selectedFilter} = this.state;
-        console.log(todos);
+        const {classes} = this.props;
         const getVisibleTodos = this.getVisibleTodos(todos, selectedFilter);
-        return (<div>
-            <CreateTodoItem hasTodo={getVisibleTodos.length > 0} onTodoAddItem={this.onTodoAddItem} todos={todos} makeAllTodoItemsCompleted={this.makeAllTodoItemsCompleted}/>
-            <TodoList onFilterStateChange={this.onFilterStateChange} todos={getVisibleTodos}
-                      onTodoIsCompeteChange={this.onTodoIsCompeteChange}
-            removeItemFromTodo={this.removeItemFromTodo}
-            onTodoValueChange={this.onTodoValueChange} clearCompleted={this.clearCompleted}/>
-        </div>)
+        return (<Card className={classes.root}>
+            <CardContent>
+                <h1 className={classes.title}>todos</h1>
+                <CreateTodoItem hasTodo={getVisibleTodos.length > 0} onTodoAddItem={this.onTodoAddItem} todos={todos}
+                                makeAllTodoItemsCompleted={this.makeAllTodoItemsCompleted}/>
+                <TodoList onFilterStateChange={this.onFilterStateChange} todos={getVisibleTodos}
+                          onTodoIsCompeteChange={this.onTodoIsCompeteChange}
+                          removeItemFromTodo={this.removeItemFromTodo}
+                          onTodoValueChange={this.onTodoValueChange} clearCompleted={this.clearCompleted}/>
+            </CardContent>
+        </Card>)
     }
 
 
 }
 
-export default Main;
+export default withStyles(style)(Main);

@@ -1,6 +1,21 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import IconButton from "@material-ui/core/IconButton";
+import Close from "@material-ui/icons/Close";
+
+
+import style from "./style";
 
 class ListItem extends Component {
+
+    static PropTypes= {
+        todo:PropTypes.array.isRequired,
+        key:PropTypes.number.isRequired,
+        onTodoIsCompeteChange:PropTypes.func.isRequired,
+        onTodoValueChange:PropTypes.func.isRequired,
+        removeItemFromTodo:PropTypes.func.isRequired
+};
     constructor(props) {
         super(props);
         this.state = ({
@@ -39,16 +54,17 @@ class ListItem extends Component {
 
     render() {
 
-        const {todo} = this.props;
+        const {todo,classes} = this.props;
         const {isEditing} = this.state;
-        return (<li>
+        return (<li className={classes.li}>
+
             <input type="checkbox" checked={todo.isComplete} onChange={this.onChange} />
             {isEditing ?
                 <input type="text" value={todo.value} onChange={this.todoValueChange} onKeyDown={this.onKeyDown}/> :
                 <span onDoubleClick={this.onDoubleClick}>{todo.value}</span>}
-            <button onClick={this.clearButtonClick}>Clear</button>
+            <IconButton className={classes.clearButton} onClick={this.clearButtonClick}><Close/></IconButton>
         </li>)
     }
 }
 
-export default ListItem;
+export default withStyles(style)(ListItem);
