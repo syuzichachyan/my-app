@@ -65,10 +65,17 @@ class Main extends Component {
             selectedFilter
         });
     };
+    clearCompleted=()=>{
+        const {todos}=this.state;
+        const activeTodos=Main.FilterActive(todos);
+        this.setState({todos: activeTodos});
+    };
 
     makeAllTodoItemsCompleted=(todos)=>{
         const newTodos=[...todos];
-        todos=newTodos.map(todo=>{return {...todo,isComplete:true}});
+        console.log(Main.FilterActive(todos).length);
+        let isComplete=Main.FilterActive(todos).length>0;
+        todos=newTodos.map(todo=>{return {...todo,isComplete}});
         this.setState({todos:todos});
     };
 
@@ -81,7 +88,7 @@ class Main extends Component {
             <TodoList onFilterStateChange={this.onFilterStateChange} todos={getVisibleTodos}
                       onTodoIsCompeteChange={this.onTodoIsCompeteChange}
             removeItemFromTodo={this.removeItemFromTodo}
-            onTodoValueChange={this.onTodoValueChange}/>
+            onTodoValueChange={this.onTodoValueChange} clearCompleted={this.clearCompleted}/>
         </div>)
     }
 

@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import ListItem from "./ListItem";
 
-class TodoList extends Component {
 
+class TodoList extends Component {
 
     onAllClick = () => {
         this.props.onFilterStateChange("all")
@@ -14,12 +14,14 @@ class TodoList extends Component {
         this.props.onFilterStateChange("complete");
     };
 
+
     render() {
         const {
             todos,
             onTodoIsCompeteChange,
             removeItemFromTodo,
             onTodoValueChange,
+            clearCompleted
 
         } = this.props;
         return (
@@ -33,9 +35,11 @@ class TodoList extends Component {
 
                 </ul>
                 <div>
+                    <span>{todos.length} item left</span>
                     <button onClick={this.onAllClick}>All</button>
                     <button onClick={this.onActiveClick}>Active</button>
                     <button onClick={this.onCompleteClick}>Complete</button>
+                   <button  onClick={clearCompleted}>Clear completed</button>
                 </div>
             </div>
         )
