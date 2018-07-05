@@ -56,9 +56,9 @@ class ListItem extends Component {
 
         const {todo,classes} = this.props;
         const {isEditing} = this.state;
-        return (<li className={classes.li}>
+        return (<li className={classes.listItem}>
 
-            <input type="checkbox" checked={todo.isComplete} onChange={this.onChange} />
+            <input type="checkbox" checked={todo.isComplete} onChange={this.onChange} className={classes.checkboxCl}/>
             {isEditing ?
                 <input type="text" value={todo.value} onChange={this.todoValueChange} onKeyDown={this.onKeyDown}/> :
                 <span onDoubleClick={this.onDoubleClick}>{todo.value}</span>}

@@ -7,7 +7,6 @@ import style from "./style";
 import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
-import TextField from '@material-ui/core/TextField';
 
 
 class CreateTodoItem extends Component{

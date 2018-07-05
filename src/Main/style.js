@@ -7,9 +7,12 @@ export default {
         alignItems: "center"
     },
     title: {
+        display: "flex",
         color: "rgba(175, 47, 47, 0.15)",
         fontSize: "100px",
         fontWeight: 100,
-        margin: 0
+        margin:0,
+
+
     }
 };
