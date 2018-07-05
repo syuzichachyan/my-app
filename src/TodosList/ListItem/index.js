@@ -33,14 +33,15 @@ class ListItem extends Component {
             isEditing: true})
     };
     todoValueChange = (e) => {
+
         const {onTodoValueChange, todo} = this.props;
         onTodoValueChange(e.target.value, todo);
     };
     onKeyDown = (e) => {
-        const {todo} = this.props;
+        const {todo,removeItemFromTodo} = this.props;
         if (e.keyCode === 13)
             if (e.target.value.trim() === "")
-                this.removeItemFromTodo(todo);
+                removeItemFromTodo(todo);
             else {
                 this.todoValueChange(e);
                 this.setState({
