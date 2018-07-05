@@ -4,6 +4,11 @@ import IconButton from "@material-ui/core/IconButton";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import { withStyles } from '@material-ui/core/styles';
 import style from "./style";
+import Input from '@material-ui/core/Input';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import TextField from '@material-ui/core/TextField';
+
 
 class CreateTodoItem extends Component{
     static PropTypes={
@@ -53,10 +58,19 @@ class CreateTodoItem extends Component{
         const {value}=this.state;
 
         return (
+
             <div className={classes.root}>
-                {hasTodo && <IconButton className={classes.IconButton} onClick={this.arrowTodosClick}><ArrowDownwardIcon className={classes.ArrowDownwardIcon}/></IconButton>}
-                <input value={value} placeholder="What needs to be done?" onChange={this.onChange} onKeyDown={this.onKeyDown} className={classes.input}/>
-            </div>
+                <FormControl >
+
+                    <Input
+                        startAdornment={
+                            <InputAdornment position="start">
+                                {hasTodo && <IconButton className={classes.IconButton} onClick={this.arrowTodosClick}><ArrowDownwardIcon className={classes.ArrowDownwardIcon}/></IconButton>}
+                            </InputAdornment>
+                        }
+                        value={value} placeholder="What needs to be done?" onChange={this.onChange} onKeyDown={this.onKeyDown} className={classes.input}/>
+                </FormControl>
+                 </div>
         )
     }
 }
