@@ -6,7 +6,6 @@ import { withStyles } from '@material-ui/core/styles';
 import style from "./style";
 import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import FormControl from '@material-ui/core/FormControl';
 
 
 class CreateTodoItem extends Component{
@@ -59,16 +58,14 @@ class CreateTodoItem extends Component{
         return (
 
             <div className={classes.root}>
-                <FormControl >
 
-                    <Input
+                    <Input fullWidth={true}
                         startAdornment={
                             <InputAdornment position="start">
                                 {hasTodo && <IconButton className={classes.IconButton} onClick={this.arrowTodosClick}><ArrowDownwardIcon className={classes.ArrowDownwardIcon}/></IconButton>}
                             </InputAdornment>
                         }
                         value={value} placeholder="What needs to be done?" onChange={this.onChange} onKeyDown={this.onKeyDown} className={classes.input}/>
-                </FormControl>
                  </div>
         )
     }
